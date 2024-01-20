@@ -1,11 +1,14 @@
 import './App.css'
-import ProductForm from './components/ProductForm'
+import { Routes, Route} from 'react-router-dom'
+import Main from './views/Main'
 
 function App() {
 
   return (
     <div className="app">
-      <ProductForm/>
+        <Routes>
+          <Route element={<Main/>} path="/" default/>
+        </Routes>
     </div>
   )
 }

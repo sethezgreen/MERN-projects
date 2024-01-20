@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 
-const ProductForm = () => {
+const ProductForm = (props) => {
     const [title, setTitle] = useState("")
     const [price, setPrice] = useState("")
     const [description, setDescription] = useState("")
+    const {products, setProducts} = props
 
     const onSubmitHandler = (e) => {
         e.preventDefault()
@@ -25,15 +26,15 @@ const ProductForm = () => {
     return (
         <form onSubmit={onSubmitHandler}>
             <p>
-                <label>Title</label>
+                <label>Title: </label>
                 <input type="text" onChange = {(e) => setTitle(e.target.value)}/>
             </p>
             <p>
-                <label>Price</label>
+                <label>Price: </label>
                 <input type="num" onChange = {(e) => setPrice(e.target.value)}/>
             </p>
             <p>
-                <label>Description</label>
+                <label>Description: </label>
                 <input type="text" onChange = {(e) => setDescription(e.target.value)}/>
             </p>
             <input type="submit" value="create" />
