@@ -21,5 +21,16 @@ module.exports = {
             .catch((err) => {
                 res.status(500).json(err)
             })
+    },
+
+    // Find one
+    findOneProduct: (req, res) => {
+        Product.findOne({_id:req.params.id})
+            .then((product) => {
+                res.status(200).json(product)
+            })
+            .catch((err) => {
+                res.status(500).json(err)
+            })
     }
 }

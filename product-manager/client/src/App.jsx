@@ -1,6 +1,7 @@
 import './App.css'
 import { Routes, Route} from 'react-router-dom'
 import Main from './views/Main'
+import ViewOne from './components/ViewOne'
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <div className="app">
         <Routes>
           <Route element={<Main/>} path="/" default/>
+          <Route element={<ViewOne/>} path='/product/:id'/>
         </Routes>
     </div>
   )
