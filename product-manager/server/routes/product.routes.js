@@ -5,4 +5,5 @@ module.exports = (app) => {
     app.get('/api/products', ProductController.findAllProducts)
     app.get('/api/product/:id', ProductController.findOneProduct)
     app.patch('/api/edit/:id', ProductController.updateProduct)
+    app.delete('/api/delete/:id', ProductController.deleteProduct)
 }
