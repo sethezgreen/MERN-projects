@@ -21,8 +21,9 @@ const ProductList = (props) => {
             {
                 products.map((product) => {
                     return (
-                        <div key={product._id}>
-                            <Link to={`/product/${product._id}`}>{product.title}</Link>
+                        <div key={product._id} className='productListing'>
+                            <Link to={`/product/${product._id}`}>{product.title}</Link> <br />
+                            <Link to={`/product/edit/${product._id}`}>edit</Link>
                         </div>
                     ) 
                 })
