@@ -13,7 +13,7 @@ const AuthorForm = (props) => {
         <form onSubmit={onSubmitHandler}>
             <p>
                 <label>Name:</label> <br />
-                <input type="text" name="name" value={name} onChange={(e) => {
+                <input type="text" name="name" value={name || ""} onChange={(e) => {
                     setName(e.target.value)
                 }}/>
             </p>
