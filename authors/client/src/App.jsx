@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import AuthorForm from './components/AuthorForm'
 import DisplayAll from './components/DisplayAll'
+import UpdateForm from './components/UpdateForm'
 
 function App() {
   const [authorList, setAuthorList] = useState([])
@@ -30,9 +31,11 @@ function App() {
 
   return (
     <div>
+      <h1>Favorite Authors</h1>
       <Routes>
         <Route element={<DisplayAll authorList={authorList}/>} path='/'/>
         <Route element={<AuthorForm onSubmitProp={createAuthor}/>} path='/new'/>
+        <Route element={<UpdateForm />} path='/edit/:id'/>
       </Routes>
     </div>
   )

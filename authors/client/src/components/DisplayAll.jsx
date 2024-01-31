@@ -1,22 +1,37 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const DisplayAll = (props) => {
     const {removeFromDom, authorList} = props
+    const navigate = useNavigate()
+
+    const editButtonHandler = (id) => {
+        navigate(`/edit/${id}`)
+    }
 
     return (
         <div>
-            <h1>Favorite Authors</h1>
             <Link to={`/new`}>Add an author</Link>
-            {
-                authorList.map((author) => {
-                    return (
-                        <div key={author._id}>
-                            <p>{author.name}</p>
-                        </div>
-                    )
-                })
-            }
+            <p>We have quotes by:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Author</th>
+                        <th>Actions available</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {
+                    authorList.map((author) => {
+                        return (
+                            <tr key={author._id}>
+                                <td>{author.name}</td>
+                                <td><button onClick={(e) => {editButtonHandler(author._id)}}>edit</button> | delete <Link to={`/edit/${author._id}`}>edit</Link></td>
+                            </tr>
+                        )
+                    })
+                }
+                </tbody>
+            </table>
         </div>
     )
 }
