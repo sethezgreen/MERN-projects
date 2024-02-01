@@ -1,9 +1,20 @@
 import { Link, useNavigate } from 'react-router-dom'
 import DeleteButton from './DeleteButton'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const DisplayAll = (props) => {
-    const {removeFromDom, authorList} = props
+    const {removeFromDom, authorList, setAuthorList} = props
     const navigate = useNavigate()
+
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/authors')
+            .then((res) => {
+            setAuthorList(res.data)
+            // console.log(res.data)
+        })
+            .catch((err) => console.log(err))
+        }, [])
 
     const editButtonHandler = (id) => {
         navigate(`/edit/${id}`)

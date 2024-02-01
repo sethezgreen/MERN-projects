@@ -10,15 +10,6 @@ function App() {
   const [authorList, setAuthorList] = useState([])
   const navigate = useNavigate()
 
-  useEffect(() => {
-    axios.get('http://localhost:8000/api/authors')
-      .then((res) => {
-        setAuthorList(res.data)
-        // console.log(res.data)
-      })
-      .catch((err) => console.log(err))
-  }, [])
-
   const removeFromDom = (authorId) => {
       setAuthorList(authorList.filter(author => author._id !== authorId))
   }
@@ -37,7 +28,7 @@ function App() {
     <div>
       <h1>Favorite Authors</h1>
       <Routes>
-        <Route element={<DisplayAll authorList={authorList} removeFromDom={removeFromDom}/>} path='/'/>
+        <Route element={<DisplayAll authorList={authorList} setAuthorList={setAuthorList} removeFromDom={removeFromDom}/>} path='/'/>
         <Route element={<AuthorForm onSubmitProp={createAuthor}/>} path='/new'/>
         <Route element={<UpdateForm />} path='/edit/:id'/>
       </Routes>
