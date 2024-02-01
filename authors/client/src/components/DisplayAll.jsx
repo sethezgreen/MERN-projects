@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
+import DeleteButton from './DeleteButton'
 
 const DisplayAll = (props) => {
     const {removeFromDom, authorList} = props
@@ -25,7 +26,7 @@ const DisplayAll = (props) => {
                         return (
                             <tr key={author._id}>
                                 <td>{author.name}</td>
-                                <td><button onClick={(e) => {editButtonHandler(author._id)}}>edit</button> | delete <Link to={`/edit/${author._id}`}>edit</Link></td>
+                                <td><button onClick={(e) => {editButtonHandler(author._id)}}>edit</button> | <DeleteButton authorId={author._id} successCallback={() => removeFromDom(author._id)}/></td>
                             </tr>
                         )
                     })

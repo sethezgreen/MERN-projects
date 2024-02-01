@@ -14,10 +14,14 @@ function App() {
     axios.get('http://localhost:8000/api/authors')
       .then((res) => {
         setAuthorList(res.data)
-        console.log(res.data)
+        // console.log(res.data)
       })
       .catch((err) => console.log(err))
   }, [])
+
+  const removeFromDom = (authorId) => {
+      setAuthorList(authorList.filter(author => author._id !== authorId))
+  }
 
   const createAuthor = authorObject => {
     axios.post('http://localhost:8000/api/createAuthor', authorObject)
@@ -33,7 +37,7 @@ function App() {
     <div>
       <h1>Favorite Authors</h1>
       <Routes>
-        <Route element={<DisplayAll authorList={authorList}/>} path='/'/>
+        <Route element={<DisplayAll authorList={authorList} removeFromDom={removeFromDom}/>} path='/'/>
         <Route element={<AuthorForm onSubmitProp={createAuthor}/>} path='/new'/>
         <Route element={<UpdateForm />} path='/edit/:id'/>
       </Routes>
