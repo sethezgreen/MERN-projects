@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 import AuthorForm from './AuthorForm'
+import DeleteButton from './DeleteButton'
 
 const UpdateForm = (props) => {
     const {id} = useParams()
@@ -23,7 +24,6 @@ const UpdateForm = (props) => {
             .then((res) => {
                 console.log(res)
                 navigate('/')
-                // need display list to update after put request
             })
             .catch((err) => console.log(err))
     }
@@ -31,7 +31,12 @@ const UpdateForm = (props) => {
     return (
         <div>
             {
-                loaded && <AuthorForm onSubmitProp={updateAuthor} initialName={author.name} submitText={'Update'}/>
+                loaded && (
+                    <div>
+                        <AuthorForm onSubmitProp={updateAuthor} initialName={author.name} submitText={'Update'}/>
+                        <DeleteButton authorId={author._id} successCallback={() => navigate('/')}/>
+                    </div>
+                )
             }
         </div>
     )
